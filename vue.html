@@ -11,27 +11,47 @@
 <body>
   <div class="">
     <div id="app">
+      <div class="form" width=200>
+        <a v-on:click="addNewUser()">
+          <img src="public/img/new-user.svg" width="40" height="40">
+        </a>
+        <p>
+          <label>Name</label>
+          <input v-on:input="newUserName = $event.target.value" type="text" name="first_name">
+        </p>
+        <p>
+          <label>Login</label>
+          <input type="text" name="last_name">
+        </p>
+        <p>
+          <label>Password</label>
+          <input type="email" name="email">
+        </p>
+      </div>
 
-    <button id="addUserBtn" type="button">Добавить</button>
-    <button id="removeUserBtn" type="button">Удалить</button>
-    <table border=1>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Login</th>
-        <th>Password</th>
-        <th>Remove</th>
-      </tr>
-      <tr v-for="user in sort">
-        <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-        <td>{{user.login}}</td>
-        <td>{{user.password}}</td>
-        <td><img src="public/img/cancel.svg" width = "32" height="32" text-align=center> </td>
-      </tr>
-    </table>
+      <table border=1>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Login</th>
+          <th>Password</th>
+          <th>Remove</th>
+        </tr>
+        <tr v-for="user in sort">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{user.login}}</td>
+          <td>{{user.password}}</td>
+          <td>
+            <a v-on:click="removeUser(user.id)">
+              <img src="public/img/cancel.svg" width="32" height="32">
+            </a>
+          </td>
+        </tr>
+      </table>
+
     </div>
-    </div>
+  </div>
 
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
