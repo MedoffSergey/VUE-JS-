@@ -17,20 +17,30 @@ let userList = [
     { id: 16, name: 'Irina', login: 'Beller', password:"qwerty"}
 ];
 
-
 var app = new Vue({
-  el: '#app',
-  data: {
-    sort: userList,
-
+      el: '#app',
+      data(){
+          return {
+            // sort: userList,
+            newUser: {
+              id: userList.length + 1,
+              name: '',
+              login: '',
+              password: ''
+            }
+          }
+  },
+  computed: {
+    sort() {
+      return userList;
+    }
   },
   methods: {
     removeUser(id) {
       console.log(id);
-      for(let i = 0; i < userList.length; i++ ){
-        console.log(i);
-        if(userList[i].id == id){
-          userList.splice(i,1);
+      for (let i = 0; i < userList.length; i++) {
+        if (userList[i].id == id) {
+          userList.splice(i, 1);
           i--;
         }
       }
@@ -38,7 +48,12 @@ var app = new Vue({
     },
 
     addNewUser() {
-      console.log(name)
+      console.log(this.newUser)
+      userList.push(this.newUser)
+        console.log("userList ",userList)
+        this.newUser.name=""
+        this.newUser.login=""
+        this.newUser.password=""
     }
   }
 })
